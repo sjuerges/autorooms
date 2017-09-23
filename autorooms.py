@@ -10,7 +10,7 @@ auto_room_indicator = '⌛'
 game_room_indicator = '🎮'
 clone_indicator = '♻'
 
-bot = commands.Bot(command_prefix='HAL9000> ', description=None)
+bot = discord.Client()
 
 
 @bot.event
