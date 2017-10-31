@@ -10,7 +10,7 @@ auto_room_indicator = '⌛'
 game_room_indicator = '🎮'
 clone_indicator = '♻'
 
-bot = commands.Bot(command_prefix='HAL9000> ', description=None)
+bot = commands.Bot(command_prefix='>> ', description=None)
 
 
 @bot.event
@@ -75,4 +75,4 @@ async def _make_game_room(member, chan):
     await member.move_to(z, reason="autoroom")
 
 
-bot.run(os.environ.get('TOKEN'))
+bot.run(os.environ.get('AUTOROOMTOKEN'))
