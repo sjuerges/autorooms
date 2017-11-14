@@ -41,7 +41,7 @@ async def setup(ctx):
         f"\nTo create autorooms, have the first character in the source room "
         f"be either"
         f"\n`{auto_room_indicator}` : for standard cloning"
-        f"or\n"
+        f"\nor\n"
         f"`{game_room_indicator}` : for room names based on game name "
         f"as detected by discord"
         f"\n\nDon't use `{clone_indicator}` in your channel names, "
