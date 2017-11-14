@@ -69,14 +69,13 @@ async def info(ctx):
         f"[Sinbad#0413]({author_repo}) to automatically "
         f"make channels on the fly without giving manage channels to everyone."
         f"\nIt is written in [python]({python_url}), "
-        f"and uses [discord.py]({dpy_repo})")
+        f"and uses [discord.py]({dpy_repo})"
+        f"\n\nbug reports can be submitted [here]({bot_repo})")
 
     embed = discord.Embed(colour=discord.Colour.dark_purple())
     embed.add_field(name="Python", value=py_version)
     embed.add_field(name="discord.py", value=dpy_version)
     embed.add_field(name="About me", value=about, inline=False)
-    embed.set_footer(
-        text=f'[bug reports can be submitted here]({bot_repo})')
 
     await ctx.send(embed=embed)
 
