@@ -25,7 +25,7 @@ async def on_ready():
         game=discord.Game(name='\'>>setup\' for instructions', type=0))
 
 
-@bot.command
+@bot.command()
 async def setup(ctx):
     """
     Instructions
