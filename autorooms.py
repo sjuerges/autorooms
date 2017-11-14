@@ -30,20 +30,18 @@ async def setup(ctx):
     """
     Instructions
     """
-    content = f"""
-    Hey, I see you may ned help using this.
-    This bot creates clones of existing channels that are temporary, with the
-    same permissions and category as the original.
-
-    To create autorooms, have the first character in the source room be either
-
-    `{auto_room_indicator}` : for standard cloning
-    or
-    `{game_room_indicator}` : for room names based on game detected by discord
-
-    Don't use {clone_indicator} in your channel names, the bot uses these
-    to detect temporary channels it makes
-    """
+    content = (
+        f"Hey, I see you may ned help using this."
+        f"\nThis bot creates clones of existing channels that are temporary, "
+        f"with the same permissions and category as the original."
+        f"\nTo create autorooms, have the first character in the source room "
+        f"be either"
+        f"\n`{auto_room_indicator}` : for standard cloning"
+        f"or\n"
+        f"`{game_room_indicator}` : for room names based on game name "
+        f"as detected by discord"
+        f"\n\nDon't use `{clone_indicator}` in your channel names, "
+        f"the bot uses this to detect temporary channels it makes")
     embed = discord.Embed(
         description=content, color=discord.Color.dark_purple())
 
