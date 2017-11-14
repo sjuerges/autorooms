@@ -23,6 +23,10 @@ bot = commands.Bot(command_prefix=whatsmyprefix,
 async def on_ready():
     await bot.change_presence(
         game=discord.Game(name='\'>>setup\' for instructions', type=0))
+    data = await bot.application_info()
+    perms = discord.Permissions(permissions=16796688)
+    oauth_url = discord.utils.oauth_url(data.id, permissions=perms)
+    print(f'Use this link to add the bot to your server: {oauth_url}')
 
 
 @bot.command()
