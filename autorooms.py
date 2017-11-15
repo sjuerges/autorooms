@@ -109,6 +109,8 @@ async def _make_auto_room(member, chan):
     category = chan.category
 
     editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
+    if category:
+        editargs.update({'category': category})
     overwrites = {}
     for perm in chan.overwrites:
         overwrites.update({perm[0]: perm[1]})
@@ -129,6 +131,8 @@ async def _make_game_room(member, chan):
     category = chan.category
 
     editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
+    if category:
+        editargs.update({'category': category})
     for perm in chan.overwrites:
         overwrites = {}
         overwrites.update({perm[0]: perm[1]})
