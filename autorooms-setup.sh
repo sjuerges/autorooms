@@ -13,7 +13,6 @@ fi
 
 if [ $EUID -ne 0 ]; then
   echo "The script will relaunch and prompt for sudo to continue" 1>&2
-  cd ..
   sudo "$0" "$@"
   exit $?
 fi

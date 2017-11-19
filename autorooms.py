@@ -15,8 +15,9 @@ def whatsmyprefix(bot, msg):
     return commands.when_mentioned_or(*['>>'])(bot, msg)
 
 
-bot = commands.Bot(command_prefix=whatsmyprefix,
-                   description="A minimal config autoroom bot by Sinbad#0413")
+bot = commands.AutoShardedBot(
+    command_prefix=whatsmyprefix,
+    description="A minimal config autoroom bot by Sinbad#0413")
 
 
 @bot.event
@@ -65,17 +66,47 @@ async def info(ctx):
     py_version = "[{}.{}.{}]({})".format(*os.sys.version_info[:3], python_url)
 
     about = (
-        f"This is a free and open source bot made by "
+        f"This is a free and [open source bot]({bot_repo}) made by "
         f"[Sinbad#0413]({author_repo}) to automatically "
         f"make channels on the fly without giving manage channels to everyone."
         f"\nIt is written in [python]({python_url}), "
         f"and uses [discord.py]({dpy_repo})"
-        f"\n\nbug reports can be submitted [here]({bot_repo})")
+        f"\n\nbug reports can be submitted [here]({bot_repo}/issues)")
 
     embed = discord.Embed(colour=discord.Colour.dark_purple())
     embed.add_field(name="Python", value=py_version)
     embed.add_field(name="discord.py", value=dpy_version)
     embed.add_field(name="About me", value=about, inline=False)
+
+    await ctx.send(embed=embed)
+
+
+@bot.command()
+async def support(ctx):
+    """
+    How to support this bot's ongoing development and hosting.
+    """
+    patreon = 'https://www.patreon.com/mikeshardmind'
+    author_repo = 'https://github.com/mikeshardmind'
+    bot_repo = author_repo + '/singlepurposediscordbots'
+    dpy_repo = "https://github.com/Rapptz/discord.py"
+    python_url = "https://www.python.org/"
+    dpy_version = "[{}]({})".format(discord.__version__, dpy_repo)
+    py_version = "[{}.{}.{}]({})".format(*os.sys.version_info[:3], python_url)
+
+    details = (
+        f"Thanks for taking an interest in supporting this. "
+        f"I made this in spare time, for my own needs, but I am glad "
+        f"other people find it useful.\n\nOne of the best ways you can help me"
+        f" Is to submit bug reports if you find anything not behaving as "
+        f"intended (click [here]({bot_repo}/issues)) "
+        f"\n\nIf you would like to support me more directly, "
+        f"I have a [Patreon page]({patreon}).")
+
+    embed = discord.Embed(colour=discord.Colour.dark_purple())
+    embed.add_field(name="Python", value=py_version)
+    embed.add_field(name="discord.py", value=dpy_version)
+    embed.add_field(name="About me", value=details, inline=False)
 
     await ctx.send(embed=embed)
 
@@ -109,8 +140,6 @@ async def _make_auto_room(member, chan):
     category = chan.category
 
     editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
-    # if category:
-    #    editargs.update({'category': category})
     overwrites = {}
     for perm in chan.overwrites:
         overwrites.update({perm[0]: perm[1]})
@@ -131,8 +160,6 @@ async def _make_game_room(member, chan):
     category = chan.category
 
     editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
-    # if category:
-    #    editargs.update({'category': category})
     for perm in chan.overwrites:
         overwrites = {}
         overwrites.update({perm[0]: perm[1]})
