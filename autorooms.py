@@ -36,7 +36,7 @@ async def setup(ctx):
     Instructions
     """
     content = (
-        f"Hey, I see you may ned help using this."
+        f"Hey, I see you may need help using this."
         f"\nThis bot creates clones of existing channels that are temporary, "
         f"with the same permissions and category as the original."
         f"\nTo create autorooms, have the first character in the source room "
@@ -54,6 +54,17 @@ async def setup(ctx):
 
 
 @bot.command()
+async def join(ctx):
+    """
+    get my invite link
+    """
+    data = await bot.application_info()
+    perms = discord.Permissions(permissions=16796688)
+    oauth_url = discord.utils.oauth_url(data.id, permissions=perms)
+    await ctx.send(f'Click here to add me to your server: {oauth_url}')
+
+
+@bot.command()
 async def info(ctx):
     """
     basic info about the bot
@@ -67,7 +78,7 @@ async def info(ctx):
 
     about = (
         f"This is a free and [open source bot]({bot_repo}) made by "
-        f"[Sinbad#0413]({author_repo}) to automatically "
+        f"[Sinbad#0413]({author_repo}) to automagically "
         f"make channels on the fly without giving manage channels to everyone."
         f"\nIt is written in [python]({python_url}), "
         f"and uses [discord.py]({dpy_repo})"
@@ -98,7 +109,7 @@ async def support(ctx):
         f"Thanks for taking an interest in supporting this. "
         f"I made this in spare time, for my own needs, but I am glad "
         f"other people find it useful.\n\nOne of the best ways you can help me"
-        f" Is to submit bug reports if you find anything not behaving as "
+        f" is to submit bug reports if you find anything not behaving as "
         f"intended (click [here]({bot_repo}/issues)) "
         f"\n\nIf you would like to support me more directly, "
         f"I have a [Patreon page]({patreon}).")
