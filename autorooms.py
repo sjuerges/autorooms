@@ -70,7 +70,7 @@ async def info(ctx):
     basic info about the bot
     """
     author_repo = 'https://github.com/mikeshardmind'
-    bot_repo = author_repo + '/singlepurposediscordbots'
+    bot_repo = author_repo + '/autorooms'
     dpy_repo = "https://github.com/Rapptz/discord.py"
     python_url = "https://www.python.org/"
     dpy_version = "[{}]({})".format(discord.__version__, dpy_repo)
@@ -99,7 +99,7 @@ async def support(ctx):
     """
     patreon = 'https://www.patreon.com/mikeshardmind'
     author_repo = 'https://github.com/mikeshardmind'
-    bot_repo = author_repo + '/singlepurposediscordbots'
+    bot_repo = author_repo + '/autorooms'
     dpy_repo = "https://github.com/Rapptz/discord.py"
     python_url = "https://www.python.org/"
     dpy_version = "[{}]({})".format(discord.__version__, dpy_repo)
