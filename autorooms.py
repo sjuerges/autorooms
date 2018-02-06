@@ -17,7 +17,7 @@ def whatsmyprefix(bot, msg):
 
 bot = commands.AutoShardedBot(
     command_prefix=whatsmyprefix,
-    description="A minimal config autoroom bot by Sinbad#0413")
+    description="A minimal config autoroom bot by Sinbad#0001")
 
 
 @bot.event
