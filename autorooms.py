@@ -78,7 +78,7 @@ async def info(ctx):
 
     about = (
         f"This is a free and [open source bot]({bot_repo}) made by "
-        f"[Sinbad#0413]({author_repo}) to automagically "
+        f"[Sinbad#0001]({author_repo}) to automagically "
         f"make channels on the fly without giving manage channels to everyone."
         f"\nIt is written in [python]({python_url}), "
         f"and uses [discord.py]({dpy_repo})"
