@@ -1,14 +1,10 @@
 **WARNING**
-Do not invite this bot if you have any channels beginning with the '♻' character and care about those channels, the bot uses this character to denote temporary channels.
+Do not use this bot if you have any channels beginning with the '♻' character and care about those channels, the bot uses this character to denote temporary channels.
 
-# How to:
-
-If you'd like, you can just [invite my bot](https://discordapp.com/oauth2/authorize?client_id=365420182522429440&scope=bot&permissions=285232144)
-
-If you would prefer to host your own, keep reading.
+# How to
 
 
-# autorooms
+## autorooms
 
 ```
 python3.6 -m venv venv
