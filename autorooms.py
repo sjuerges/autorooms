@@ -3,31 +3,35 @@ from discord.ext import commands
 from datetime import datetime, timedelta
 import os
 import asyncio
+
 assert discord
 
 
-auto_room_indicator = '⌛'
-game_room_indicator = '🎮'
-clone_indicator = '♻'
+auto_room_indicator = "⌛"
+game_room_indicator = "🎮"
+clone_indicator = "♻"
 
 
 def whatsmyprefix(bot, msg):
-    return commands.when_mentioned_or(*['>>'])(bot, msg)
+    return commands.when_mentioned_or(*[">>"])(bot, msg)
 
 
 bot = commands.AutoShardedBot(
     command_prefix=whatsmyprefix,
-    description="A minimal config autoroom bot by Sinbad#0001")
+    description="A minimal config autoroom bot by Sinbad#0001",
+)
 
 
 @bot.event
 async def on_ready():
+    status = bot.guilds[0].me.status if len(bot.guilds) > 0 else discord.Status.online
     await bot.change_presence(
-        game=discord.Game(name='\'>>setup\' for instructions', type=0))
+        status=status, activity=discord.Game(name="'>>setup' for instructions")
+    )
     data = await bot.application_info()
     perms = discord.Permissions(permissions=16796688)
     oauth_url = discord.utils.oauth_url(data.id, permissions=perms)
-    print(f'Use this link to add the bot to your server: {oauth_url}')
+    print(f"Use this link to add the bot to your server: {oauth_url}")
 
 
 @bot.command()
@@ -46,9 +50,9 @@ async def setup(ctx):
         f"`{game_room_indicator}` : for room names based on game name "
         f"as detected by discord"
         f"\n\nDon't use `{clone_indicator}` in your channel names, "
-        f"the bot uses this to detect temporary channels it makes")
-    embed = discord.Embed(
-        description=content, color=discord.Color.dark_purple())
+        f"the bot uses this to detect temporary channels it makes"
+    )
+    embed = discord.Embed(description=content, color=discord.Color.dark_purple())
 
     await ctx.author.send(embed=embed)
 
@@ -61,7 +65,7 @@ async def join(ctx):
     data = await bot.application_info()
     perms = discord.Permissions(permissions=16796688)
     oauth_url = discord.utils.oauth_url(data.id, permissions=perms)
-    await ctx.send(f'Click here to add me to your server: {oauth_url}')
+    await ctx.send(f"Click here to add me to your server: {oauth_url}")
 
 
 @bot.command()
@@ -69,8 +73,8 @@ async def info(ctx):
     """
     basic info about the bot
     """
-    author_repo = 'https://github.com/mikeshardmind'
-    bot_repo = author_repo + '/autorooms'
+    author_repo = "https://github.com/mikeshardmind"
+    bot_repo = author_repo + "/autorooms"
     dpy_repo = "https://github.com/Rapptz/discord.py"
     python_url = "https://www.python.org/"
     dpy_version = "[{}]({})".format(discord.__version__, dpy_repo)
@@ -82,7 +86,8 @@ async def info(ctx):
         f"make channels on the fly without giving manage channels to everyone."
         f"\nIt is written in [python]({python_url}), "
         f"and uses [discord.py]({dpy_repo})"
-        f"\n\nbug reports can be submitted [here]({bot_repo}/issues)")
+        f"\n\nbug reports can be submitted [here]({bot_repo}/issues)"
+    )
 
     embed = discord.Embed(colour=discord.Colour.dark_purple())
     embed.add_field(name="Python", value=py_version)
@@ -97,9 +102,9 @@ async def support(ctx):
     """
     How to support this bot's ongoing development and hosting.
     """
-    patreon = 'https://www.patreon.com/mikeshardmind'
-    author_repo = 'https://github.com/mikeshardmind'
-    bot_repo = author_repo + '/autorooms'
+    patreon = "https://www.patreon.com/mikeshardmind"
+    author_repo = "https://github.com/mikeshardmind"
+    bot_repo = author_repo + "/autorooms"
     dpy_repo = "https://github.com/Rapptz/discord.py"
     python_url = "https://www.python.org/"
     dpy_version = "[{}]({})".format(discord.__version__, dpy_repo)
@@ -112,7 +117,8 @@ async def support(ctx):
         f" is to submit bug reports if you find anything not behaving as "
         f"intended (click [here]({bot_repo}/issues)) "
         f"\n\nIf you would like to support me more directly, "
-        f"I have a [Patreon page]({patreon}).")
+        f"I have a [Patreon page]({patreon})."
+    )
 
     embed = discord.Embed(colour=discord.Colour.dark_purple())
     embed.add_field(name="Python", value=py_version)
@@ -132,8 +138,7 @@ async def on_voice_state_update(member, v_before, v_after):
         channel = v_before.channel
         if channel.name.startswith(clone_indicator):
             if len(channel.members) == 0:
-                if channel.created_at + timedelta(seconds=3) \
-                        < datetime.utcnow():
+                if channel.created_at + timedelta(seconds=3) < datetime.utcnow():
                     try:
                         await channel.delete(reason="Empty Autoroom")
                     except Exception:
@@ -150,7 +155,7 @@ async def _make_auto_room(member, chan):
 
     category = chan.category
 
-    editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
+    editargs = {"bitrate": chan.bitrate, "user_limit": chan.user_limit}
     overwrites = {}
     for perm in chan.overwrites:
         overwrites.update({perm[0]: perm[1]})
@@ -159,7 +164,8 @@ async def _make_auto_room(member, chan):
     chan_name = "{0}: {1}".format(clone_indicator, chanz)
 
     z = await chan.guild.create_voice_channel(
-        chan_name, category=category, overwrites=overwrites)
+        chan_name, category=category, overwrites=overwrites
+    )
     await member.move_to(z, reason="autoroom")
     await asyncio.sleep(0.5)
     await z.edit(**editargs)
@@ -170,7 +176,7 @@ async def _make_game_room(member, chan):
         return
     category = chan.category
 
-    editargs = {'bitrate': chan.bitrate, 'user_limit': chan.user_limit}
+    editargs = {"bitrate": chan.bitrate, "user_limit": chan.user_limit}
     for perm in chan.overwrites:
         overwrites = {}
         overwrites.update({perm[0]: perm[1]})
@@ -178,9 +184,11 @@ async def _make_game_room(member, chan):
     chan_name = "{0}: {1.game.name}".format(clone_indicator, member)
 
     z = await chan.guild.create_voice_channel(
-        chan_name, category=category, overwrites=overwrites)
+        chan_name, category=category, overwrites=overwrites
+    )
     await member.move_to(z, reason="autoroom")
     await asyncio.sleep(0.5)
     await z.edit(**editargs)
 
-bot.run(os.environ.get('AUTOROOMTOKEN'))
+
+bot.run(os.environ.get("AUTOROOMTOKEN"))
