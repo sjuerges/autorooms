@@ -3,6 +3,10 @@ Do not use this bot if you have any channels beginning with the '♻' character 
 
 # How to
 
+If you'd like, you can just [invite my bot](https://discordapp.com/oauth2/authorize?client_id=365420182522429440&scope=bot&permissions=285232144)
+
+If you would prefer to host your own, keep reading.
+
 
 ## autorooms
 
