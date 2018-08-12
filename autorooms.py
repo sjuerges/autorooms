@@ -135,14 +135,14 @@ async def on_voice_state_update(member, v_before, v_after):
         return
 
     if v_before.channel is not None:
-        channel = v_before.channel
-        if channel.name.startswith(clone_indicator):
-            if len(channel.members) == 0:
-                if channel.created_at + timedelta(seconds=3) < datetime.utcnow():
-                    try:
-                        await channel.delete(reason="Empty Autoroom")
-                    except Exception:
-                        pass
+        for channel in v_before.channel.guild.voice_channels:
+            if channel.name.startswith(clone_indicator):
+                if len(channel.members) == 0:
+                    if channel.created_at + timedelta(seconds=3) < datetime.utcnow():
+                        try:
+                            await channel.delete(reason="Empty Autoroom")
+                        except Exception:
+                            pass
 
     if v_after.channel is not None:
         if v_after.channel.name.startswith(auto_room_indicator):
