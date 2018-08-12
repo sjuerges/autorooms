@@ -34,7 +34,7 @@ async def on_ready():
     print(f"Use this link to add the bot to your server: {oauth_url}")
 
 
-@bot.command()
+@bot.command
 async def setup(ctx):
     """
     Instructions
@@ -57,7 +57,7 @@ async def setup(ctx):
     await ctx.author.send(embed=embed)
 
 
-@bot.command()
+@bot.command
 async def join(ctx):
     """
     get my invite link
@@ -68,7 +68,7 @@ async def join(ctx):
     await ctx.send(f"Click here to add me to your server: {oauth_url}")
 
 
-@bot.command()
+@bot.command
 async def info(ctx):
     """
     basic info about the bot
@@ -97,7 +97,7 @@ async def info(ctx):
     await ctx.send(embed=embed)
 
 
-@bot.command()
+@bot.command
 async def support(ctx):
     """
     How to support this bot's ongoing development and hosting.
@@ -182,8 +182,6 @@ async def _make_game_room(member, chan):
     for perm in chan.overwrites:
         overwrites = {}
         overwrites.update({perm[0]: perm[1]})
-
-    
 
     z = await chan.guild.create_voice_channel(
         chan_name, category=category, overwrites=overwrites
