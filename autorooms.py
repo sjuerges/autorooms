@@ -172,7 +172,7 @@ async def _make_auto_room(member, chan):
 
 
 async def _make_game_room(member, chan):
-    if member.activity.type == discord.ActivityType.playing:
+    if member.activity.type != discord.ActivityType.playing:
         return
     category = chan.category
 
