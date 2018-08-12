@@ -172,7 +172,7 @@ async def _make_auto_room(member, chan):
 
 
 async def _make_game_room(member, chan):
-    if member.game is None:
+    if member.activity.type == discord.ActivityType.playing:
         return
     category = chan.category
 
@@ -181,7 +181,7 @@ async def _make_game_room(member, chan):
         overwrites = {}
         overwrites.update({perm[0]: perm[1]})
 
-    chan_name = "{0}: {1.game.name}".format(clone_indicator, member)
+    chan_name = "{0}: {1.activity.name}".format(clone_indicator, member)
 
     z = await chan.guild.create_voice_channel(
         chan_name, category=category, overwrites=overwrites
