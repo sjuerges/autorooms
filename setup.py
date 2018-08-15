@@ -4,7 +4,7 @@ requirements = ("aiohttp>=3.3.0,<3.4.0", "websockets>=6.0,<7.0", "discord.py>=1.
 
 dependency_links = (
     "https://github.com/Rapptz/discord.py/"
-    "tarball/8ccb98d395537b1c9acc187e1647dfdd07bb831b#egg=discord.py-1.0.0a0",
+    "archive/8ccb98d395537b1c9acc187e1647dfdd07bb831b.tar.gz#egg=discord.py-1.0.0a0",
 )
 
 
@@ -15,7 +15,7 @@ def get_package_list():
 if __name__ == "__main__":
     setup(
         name="discord-autorooms",
-        version="2.1.0",
+        version="2.1.2",
         packages=get_package_list(),
         url="https://github.com/mikeshardmind/autorooms",
         license="MIT",
