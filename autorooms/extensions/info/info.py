@@ -32,11 +32,12 @@ class Info:
             f"the bot uses this to detect temporary channels it makes"
         )
         embed = discord.Embed(description=content, color=discord.Color.dark_purple())
+        try:
+            await ctx.author.send(embed=embed)
+        except discord.Forbidden:
+            await ctx.send(content="Couldn't DM you...", embed=embed)
 
-        await ctx.author.send(embed=embed)
-
-
-    @commands.command
+    @commands.command()
     async def join(self, ctx):
         """
         get my invite link
@@ -47,8 +48,7 @@ class Info:
             ctx.bot.invite_link = discord.utils.oauth_url(data.id, permissions=perms)
         await ctx.send(f"Click here to add me to your server: <{ctx.bot.invite_link}>")
 
-
-    @commands.command
+    @commands.command()
     async def info(self, ctx):
         """
         basic info about the bot
@@ -76,11 +76,10 @@ class Info:
 
         await ctx.send(embed=embed)
 
-
-    @commands.command
+    @commands.command()
     async def support(self, ctx):
         """
-        How to support this bot's ongoing development and hosting.
+        Support ongoing development and hosting.
         """
         patreon = "https://www.patreon.com/mikeshardmind"
         author_repo = "https://github.com/mikeshardmind"
@@ -106,3 +105,7 @@ class Info:
         embed.add_field(name="About me", value=details, inline=False)
 
         await ctx.send(embed=embed)
+
+
+def setup(bot):
+    bot.add_cog(Info())
