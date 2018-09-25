@@ -17,18 +17,3 @@ This pins a specific version of discord.py, so put it in a venv if needed to pre
 python3.6 -m pip install --process-dependency-links discord-autorooms
 AUTOROOMTOKEN='your discord bot token here' discord-autorooms
 ```
-
-## auto restarting
-
-systemd and upstart examples are in the /service-files folder
-
-They do require some modification.
-
-If you'd rather a script set this up for you (This script is not guaranteed to work.)
-
-```
-chmod 755 autorooms-setup.sh
-sudo ./autorooms-setup.sh
-```
-
-Docker image soon (tm)
