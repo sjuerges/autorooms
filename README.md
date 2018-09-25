@@ -1,4 +1,4 @@
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)[![Tip Jar](https://img.shields.io/badge/Paypal-Donate-blue.svg)](https://www.paypal.me/mikeshardmind)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)  [![Tip Jar](https://img.shields.io/badge/Paypal-Donate-blue.svg)](https://www.paypal.me/mikeshardmind)
 
 **WARNING**
 Do not use this bot if you have any channels beginning with the '♻' character and care about those channels, the bot uses this character to denote temporary channels.
