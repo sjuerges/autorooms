@@ -72,6 +72,8 @@ class Info:
         embed = discord.Embed(colour=discord.Colour.dark_purple())
         embed.add_field(name="Python", value=py_version)
         embed.add_field(name="discord.py", value=dpy_version)
+        embed.add_field(name="Users",  value=len(ctx.bot.users))
+        embed.add_field(name="Servers", value=len(ctx.bot.guilds))
         embed.add_field(name="About me", value=about, inline=False)
 
         await ctx.send(embed=embed)
