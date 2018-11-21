@@ -45,6 +45,19 @@ class AutoRooms:
         for perm in chan.overwrites:
             overwrites.update({perm[0]: perm[1]})
 
+        if chan.guild.me in overwrites:
+            overwrites[chan.guild.me].update(
+                manage_channels=True, manage_roles=True, connect=True
+            )
+        else:
+            overwrites.update(
+                {
+                    chan.guild.me: discord.PermissionOverwrite(
+                        manage_channels=True, manage_roles=True, connect=True
+                    )
+                }
+            )
+
         chan_name = "{0}: {1}".format(CLONEDROOM_STR, chan.name).replace(
             AUTOROOM_STR, ""
         )
@@ -67,6 +80,19 @@ class AutoRooms:
         overwrites = {}
         for perm in chan.overwrites:
             overwrites.update({perm[0]: perm[1]})
+
+        if chan.guild.me in overwrites:
+            overwrites[chan.guild.me].update(
+                manage_channels=True, manage_roles=True, connect=True
+            )
+        else:
+            overwrites.update(
+                {
+                    chan.guild.me: discord.PermissionOverwrite(
+                        manage_channels=True, manage_roles=True, connect=True
+                    )
+                }
+            )
 
         z = await chan.guild.create_voice_channel(
             chan_name, category=category, overwrites=overwrites

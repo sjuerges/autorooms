@@ -15,7 +15,7 @@ def get_package_list():
 if __name__ == "__main__":
     setup(
         name="discord-autorooms",
-        version="2.1.4",
+        version="2.1.5",
         packages=get_package_list(),
         url="https://github.com/mikeshardmind/autorooms",
         license="MIT",
